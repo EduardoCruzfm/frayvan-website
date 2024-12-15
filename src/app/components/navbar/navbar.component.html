@@ -1,0 +1,79 @@
+<header data-bs-theme="dark">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <button
+          class="navbar-brand btn btn-link text-decoration-none"
+          (click)="home()"
+          style="border: none; padding: 0"
+        >
+          Clinica
+        </button>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <button
+                class="nav-link active"
+                aria-current="page"
+                (click)="home()"
+              >
+                Home
+              </button>
+            </li>
+            
+            
+            <li  *ngIf="tipoUsuarioPefil && userLoggedIn" class="nav-item">
+              <button class="nav-link" (click)="miPerfil(this.usuarioActual)">Mi perfil</button>
+            </li>
+            <li  *ngIf="tipoUsuarioPefil === 'especialistas' && userLoggedIn" class="nav-item">
+              <button class="nav-link" (click)="catalogo()">Catalogo</button>
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-auto mb-2 mb-md-0"> <!-- Alinea a la derecha href="" --> 
+            <li class="nav-item" *ngIf="userLoggedIn">
+              <a appToggleVisibility class="nav-link" 
+              
+              >Usuario: {{ userEmail }}</a>
+            </li>
+          </ul>
+          <form class="d-flex ms-auto"> <!-- Alinea los botones de autenticación a la derecha -->
+            <button
+              type="button"
+              *ngIf="!userLoggedIn"
+              class="btn btn-dark me-1"
+              (click)="iniciarSesion()"
+            >
+              Iniciar Sesión
+            </button>
+            <button
+              type="button"
+              *ngIf="!userLoggedIn"
+              class="btn btn-dark me-2"
+              (click)="registrarse()"
+            >
+              Registrarse
+            </button>
+            <button
+              type="button"
+              *ngIf="userLoggedIn"
+              class="btn btn-outline-danger"
+              (click)="cerrarSesion()"
+            >
+              Cerrar sesión
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
+  

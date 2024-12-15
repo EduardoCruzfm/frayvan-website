@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
+import { slideInAnimation } from './animations/route-animations';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,15 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'frayvan-jeans';
+
+  constructor(private contexts: ChildrenOutletContexts){
+    
+  }
+
+  getRouteAnimationData() {
+    return this.contexts.getContext('primary')?.route?.snapshot?.data?.[
+      'animation'
+    ];
+  }
+
 }
