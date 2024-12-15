@@ -7,7 +7,8 @@ import { slideInAnimation } from './animations/route-animations';
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  animations: [slideInAnimation]
 })
 export class AppComponent {
   title = 'frayvan-jeans';

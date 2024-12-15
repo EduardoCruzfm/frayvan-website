@@ -10,5 +10,21 @@ export const routes: Routes = [
           (m) => m.BienvenidaComponent
         ),
         data: { animation: 'bienvenida' },
-    }
+    },
+    {
+      path: 'login',
+      loadComponent: () =>
+        import('./components/login/login.component').then(
+          (m) => m.LoginComponent
+        ),
+        data: { animation: 'login' },
+    },
+    {
+      path: 'registro',
+      loadComponent: () =>
+        import('./components/registro/registro.component').then(
+          (m) => m.RegistroComponent
+        ),
+        data: { animation: 'registro' },
+    },
 ];

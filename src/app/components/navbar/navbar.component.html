@@ -6,7 +6,7 @@
           (click)="home()"
           style="border: none; padding: 0"
         >
-          Clinica
+          FY
         </button>
         <button
           class="navbar-toggler"
@@ -35,6 +35,7 @@
             <li  *ngIf="tipoUsuarioPefil && userLoggedIn" class="nav-item">
               <button class="nav-link" (click)="miPerfil(this.usuarioActual)">Mi perfil</button>
             </li>
+            
             <li  *ngIf="tipoUsuarioPefil === 'especialistas' && userLoggedIn" class="nav-item">
               <button class="nav-link" (click)="catalogo()">Catalogo</button>
             </li>

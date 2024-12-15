@@ -1,0 +1,58 @@
+<app-navbar id="nav"></app-navbar>
+<br>
+<br>
+
+<div *ngIf="mostrarLogin" [@fadeAnimation]  class="container d-flex justify-content-center align-items-center min-vh-100">
+  <main class="form-signin w-100">
+    <form [formGroup]="form" (ngSubmit)="handleLogin()">
+      <div class="text-center mb-4">
+        <img class="mb-4" src="favicon.ico" alt="" width="150" height="150" />
+      </div>
+      <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
+
+      <div class="form-floating">
+        <input
+          type="email"
+          class="form-control"
+          id="floatingInput"
+          placeholder="name@example.com"
+          formControlName="email"
+        />
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating">
+        <input
+          type="password"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="Password"
+          formControlName="password"
+        />
+        <label for="floatingPassword">Password</label>
+      </div>
+      <br>
+      <button
+        class="btn  btn-dark w-100 py-2"
+        type="submit"
+      >
+        Sign in
+      </button>
+      
+    </form>
+    <!-- CAPTCHA -->
+    <!-- <div class="captcha-container">
+      <div id="captchaText" class="captcha-text">{{ generatedCaptcha }}</div>
+      <input
+        type="text"
+        id="captchaInput"
+        class="form-control"
+        [(ngModel)]="captchaInput"
+        placeholder="Enter CAPTCHA"
+        required
+      />
+      <button type="button" (click)="generateCaptcha()" class="captcha-btn">Generate New CAPTCHA</button>
+      <p *ngIf="captchaError" class="captcha-error">The CAPTCHA is incorrect. Try again.</p>
+    </div> -->
+    <p class="mt-5 mb-3 text-body-secondary text-center">&copy; 2017–2024</p>
+  </main>
+</div>

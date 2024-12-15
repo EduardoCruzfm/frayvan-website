@@ -37,12 +37,12 @@ export class NavbarComponent {
   async ngOnInit(): Promise<void> {
     // Recuperar el perfil del usu
     await this.cargarUsuarioActual();
-    this.usuarioService.setUsuario(this.usuarioActual );
+    this.usuarioService.setUsuario(this.usuarioActual);
     this.tipoUsuarioPefil = this.usuarioService.getUsuarioPerfil();
-    this.usuarioActual = this.usuarioService.getUsuario();
+    // this.usuarioActual = this.usuarioService.getUsuario();
 
     console.log("tipoUsuarioPefil", this.tipoUsuarioPefil)
-    console.log("usuarioActual ", this.usuarioActual)
+    // console.log("usuarioActual ", this.usuarioActual)
   }
   
   async cargarUsuarioActual() {
@@ -55,28 +55,9 @@ export class NavbarComponent {
   }
 
   home() { 
-
-    switch (this.usuarioActual.perfil) {
-      case 'paciente':
-        this.router.navigate(['/bienvenida']).then(() => {
-          this.scrollToSection('nav');
-        });
-        
-        break;
-      case 'especialista':
-        this.router.navigate(['/bienvenida']).then(() => {
-          this.scrollToSection('nav');
-        });
-        
-        break;
-      case 'administrador':
-        this.router.navigate(['/bienvenida']).then(() => {
-          this.scrollToSection('nav');
-        });
-        break;
-    
-    }
-    
+    this.router.navigate(['/bienvenida']).then(() => {
+      this.scrollToSection('nav');
+    });
   }
 
   catalogo() {
