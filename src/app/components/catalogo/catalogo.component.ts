@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -25,7 +26,17 @@ import { trigger, transition, style, animate } from '@angular/animations';
 export class CatalogoComponent {
   mostrarLogin: boolean = true; 
 
-  ir(){
+  constructor(private router: Router) { }
 
+  irAShort() {
+    console.log("--->")
+    this.router.navigate(['/short']);
+  }
+
+  irAMom() {
+    this.router.navigate(['/mom']);
+  }
+  irAChupin() {
+    this.router.navigate(['/chupin']);
   }
 }

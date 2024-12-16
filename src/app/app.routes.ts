@@ -41,6 +41,28 @@ export const routes: Routes = [
       loadComponent: () =>
         import('./components/catalogo/catalogo.component').then(
           (m) => m.CatalogoComponent
+        ),
+    },
+    {
+      path: 'short',
+      loadComponent: () =>
+        import('./components/catalogo/short/short.component').then(
+          (m) => m.ShortComponent
         )
     },
+    {
+      path: 'mom',
+      loadComponent: () =>
+        import('./components/catalogo/mom/mom.component').then(
+          (m) => m.MomComponent
+        )
+    },
+    {
+      path: 'chupin',
+      loadComponent: () =>
+        import('./components/catalogo/chupin/chupin.component').then(
+          (m) => m.ChupinComponent
+        )
+    }
+    
 ];

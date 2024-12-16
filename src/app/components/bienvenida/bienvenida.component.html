@@ -74,13 +74,13 @@
   <div class="container marketing">
 
     <!-- Botón de Solicitar Turno para administradores -->
-    <div class="row justify-content-center" *ngIf="tipoUsuario === 'administradores' || tipoUsuario === 'pacientes'">
+    <!-- <div class="row justify-content-center" *ngIf="tipoUsuario === 'administradores' || tipoUsuario === 'pacientes'">
       <div class="col-12">
         <button class="btn btn-lg btn-success w-100 p-5" (click)="navigateTo()">
           <h1>Solicitar Turno</h1>
         </button>
       </div>
-    </div>
+    </div> -->
     <!-- /.row -->
 
     <!-- START THE FEATURETTES -->
@@ -88,34 +88,62 @@
     <hr class="featurette-divider">
 
     <div class="row featurette">
-      <div class="col-md-7" id="Consultas">
-        <h2 class="featurette-heading fw-normal lh-1">C<span class="text-body-secondary">onsultas Médicas</span></h2>
-        <p class="lead">Programe una cita con uno de nuestros médicos especializados y reciba la mejor atención médica.</p>
+      <div class="col-md-7" id="MomJeans">
+        <h2 class="featurette-heading fw-normal lh-1">
+          J<span class="text-body-secondary">eans Mom</span>
+        </h2>
+        <p class="lead">
+          Descubre nuestra colección de jeans Mom, ideales para un look retro y cómodo, perfectos para cualquier ocasión.
+        </p>
       </div>
       <div class="col-md-5 position-relative">
-        <a (click)="onLinkClick($event,'/consultas')" [href]="'/consultas'">
-        <div class="overlay d-flex justify-content-center align-items-center">
-          <span class="text">Agendar Consulta</span>
-        </div>
-      </a>
+        <a (click)="onLinkClick($event,'/mom')" [href]="'/mom'">
+          <div class="overlay d-flex justify-content-center align-items-center">
+            <span class="text">Ver Colección</span>
+          </div>
+        </a>
       </div>
     </div>
-
+    
     <hr class="featurette-divider">
-
+    
     <div class="row featurette">
-      <div class="col-md-7 order-md-2 " id="Chequeos">
-        <h2 class="featurette-heading fw-normal lh-1">C<span class="text-body-secondary">hequeos Generales</span></h2>
-        <p class="lead">Realice un chequeo preventivo completo para detectar posibles riesgos de salud y recibir recomendaciones.</p>
+      <div class="col-md-7 order-md-2" id="ShortJeans">
+        <h2 class="featurette-heading fw-normal lh-1">
+          J<span class="text-body-secondary">eans Cortos</span>
+        </h2>
+        <p class="lead">
+          Explora nuestra gama de jeans cortos, diseñados para un estilo fresco y relajado durante los días más cálidos.
+        </p>
       </div>
       <div class="col-md-5 order-md-1 position-relative">
-        <a (click)="onLinkClick($event,'/chequeos')" [href]="'/chequeos'">
-        <div class="overlay d-flex justify-content-center align-items-center">
-          <span class="text">Programar Chequeo</span>
-        </div>
-      </a>
+        <a (click)="onLinkClick($event,'/short')" [href]="'/short'">
+          <div class="overlay d-flex justify-content-center align-items-center">
+            <span class="text">Ver Colección</span>
+          </div>
+        </a>
       </div>
     </div>
+    
+    <hr class="featurette-divider">
+    
+    <div class="row featurette">
+      <div class="col-md-7" id="ChupinJeans">
+        <h2 class="featurette-heading fw-normal lh-1">
+          J<span class="text-body-secondary">eans Chupín</span>
+        </h2>
+        <p class="lead">
+          Encuentra jeans chupín que combinan estilo y ajuste perfecto, resaltando tu figura con un toque moderno.
+        </p>
+      </div>
+      <div class="col-md-5 position-relative">
+        <a (click)="onLinkClick($event,'/chupin')" [href]="'/chupin'">
+          <div class="overlay d-flex justify-content-center align-items-center">
+            <span class="text">Ver Colección</span>
+          </div>
+        </a>
+      </div>
+    </div>    
 
     <hr class="featurette-divider">
 

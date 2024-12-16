@@ -19,93 +19,14 @@
         <!-- Información general -->
         <h5 class="card-title text-center mt-3">{{ usuario.nombre }} {{ usuario.apellido }}</h5>
         <p class="card-text mb-3"><strong>Email:</strong> {{ usuario.email }}</p>
-        <p class="card-text mb-3"><strong>Edad:</strong> {{ usuario.edad }}</p>
         <p class="card-text mb-3"><strong>DNI:</strong> {{ usuario.dni }}</p>
         <p class="card-text mb-3"><strong>Perfil:</strong> {{ usuario.perfil }}</p>
-        
-        <!-- Especialidad para especialistas -->
-        <div *ngIf="usuario.perfil === 'especialista' && usuario.especialidad">
-          <p class="card-text mb-3"><strong>Especialidad:</strong> {{ usuario.especialidad }}</p>
-        </div>
-    
-
-        <!-- Obra social para pacientes -->
-        <div *ngIf="usuario.perfil === 'paciente' && usuario.obraSocial">
-          <p class="card-text mb-3"><strong>Obra Social:</strong> {{ usuario.obraSocial }}</p>
-        </div>
-        <!-- Estado -->
-        <div *ngIf="usuario.perfil !== 'administrador' && usuario.aprobado">
-          <p class="card-text mb-3"><strong>Estado:</strong> {{ usuario.aprobado }}</p>
-        </div>  
         
         <div *ngIf="usuario.perfil === 'paciente' && usuario.obraSocial">
           <button class="btn btn-primary mt-2" (click)="historial()">Mi historial</button>
         </div>  
         
-        <!-- Especialista -->
-        <div *ngIf="usuario.perfil === 'especialista'">
-          <h3 class="mt-4">Agregar Disponibilidad</h3>
-          <div class="row">
-   
-              <!-- Selector de Año -->
-              <div class="col-md-2">
-                <label for="anio">Año:</label>
-                <select id="anio" [(ngModel)]="anio"  (change)="obtenerDatosIniciales(mes,anio)" class="form-control">
-                  <option [selected]="true" [value]="anioActual">{{ anioActual }}</option>
-                  <option [value]="anioSiguiente" class>{{ anioSiguiente }}</option>
-                </select>
-              </div>
-
-               <!-- Selector de Mes -->
-               <div class="col-md-2">
-                <label for="mes">Mes:</label>
-                <select id="mes" [(ngModel)]="mes" (change)="obtenerDatosIniciales(mes,anioActual)" class="form-control">
-                  <option value="">Mes</option>
-                  <option *ngFor="let mes of mesesDisponibles" [value]="obtenerNombreMes(mes)">{{ obtenerNombreMes(mes) }}</option>
-                </select>
-              </div>
-              
-               <!-- Selector de Día -->
-               <div class="col-md-2">
-                <label for="dia">Día:</label>
-                <select id="dia" [(ngModel)]="dia" (change)="actualizarRangoHorario()" class="form-control">
-                  <option value="">Día</option>
-                  <!-- <option *ngFor="let dia of diasPermitidos" [value]="dia">{{ dia }}</option> -->
-                  <option *ngFor="let dia of diasEnMes" [ngValue]="dia">{{dia.diaNumero}}</option>
-                  <!-- <option *ngFor="let dia of diasEnMes" [value]="dia.diaNombre">{{dia.diaNumero}}</option> -->
-                </select>
-              </div>
-
-              <!-- Selector de Hora de Inicio -->
-               <div class="col-md-3">
-                <label for="horaInicio">Hora de Inicio:</label>
-                <select id="horaInicio" [(ngModel)]="horaInicio" class="form-control">
-                  <option value="">Hora de Inicio</option>
-                  <option *ngFor="let hora of horasDisponibles" [value]="hora">{{ hora }}</option>
-                </select>
-              </div>
-              
-              <!-- Selector de Hora de Fin -->
-              <div class="col-md-3">
-                <label for="horaFin">Hora de Fin:</label>
-                <select id="horaFin" [(ngModel)]="horaFin" class="form-control">
-                  <option value="">Hora de Fin</option>
-                  <option *ngFor="let hora of horasDisponibles" [value]="hora">{{ hora }}</option>
-                </select>
-              </div>
-            </div>
-          
-          
-          <br>
-          <button class="btn btn-primary mb-3" (click)="agregarDisponibilidad()">Agregar Disponibilidad</button>
-          <p class="card-text mb-3"><strong>Disponibilidad:</strong> </p>
-          <ul class="list-group">
-            <li class="list-group-item" *ngFor="let disp of disponibilidad">
-              {{ disp.diaCadena }} {{ disp.diaNumero }} - {{ disp.mes }} - {{ disp.anio }} {{ disp.horaInicio }} {{ disp.horaFin }} 
-            </li>
-          </ul>
-          <button class="btn btn-success mt-3" (click)="guardarCambios()">Guardar Cambios</button>
-        </div>
+        
       </div>  
       </div>
       
