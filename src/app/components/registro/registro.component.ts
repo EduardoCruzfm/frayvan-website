@@ -36,6 +36,7 @@ export class RegistroComponent {
      nombre: new FormControl('', [Validators.required]),
      apellido: new FormControl('', [Validators.required]),
      dni: new FormControl('', [Validators.required]),
+     telefono: new FormControl('', [Validators.required]),
      email: new FormControl('', [Validators.required, Validators.email]),
      password: new FormControl('', [Validators.required]),
    });
@@ -45,10 +46,10 @@ export class RegistroComponent {
    // Registrar
    async handleRegister() {
    
-       const { nombre,apellido,dni,email,password } = this.form.value;
+       const { nombre,apellido,dni,telefono,email,password } = this.form.value;
  
-       if (typeof nombre === 'string' && typeof apellido === 'string' && typeof dni === 'number' &&  
-           typeof email === 'string' && typeof password === 'string') {
+       if (typeof nombre === 'string' && typeof apellido === 'string' && typeof dni === 'number' &&   
+           typeof telefono === 'number' && typeof email === 'string' && typeof password === 'string') {
          try {
               const userCredential = await this.authService.register(email, password);
              const userId = userCredential.user?.uid;
@@ -58,7 +59,7 @@ export class RegistroComponent {
              }
    
              if (userId) {
-               const cliente: Cliente = new Cliente(userId,nombre,apellido,dni,email,"paciente");
+               const cliente: Cliente = new Cliente(userId,nombre,apellido,dni,telefono,email,"cliente");
                await this.db.agregarUsuario(cliente,'clientes');
              }
    
@@ -72,7 +73,6 @@ export class RegistroComponent {
              // Redirigir al inicio de sesión (opcional)
              this.router.navigate(['/login']);
            
- 
          } catch (error: any) {
            if (error.code === 'auth/email-already-in-use') {
              // Manejo específico cuando el correo ya está registrado

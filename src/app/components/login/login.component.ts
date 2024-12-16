@@ -30,10 +30,8 @@ import { NavbarComponent } from '../navbar/navbar.component';
   ]
 })
 export class LoginComponent {
-
   listaAdministradores: any;
-  listaEspecialistas: any;
-  listaPacientes: any;
+  listaClientes: any;
   usuarioActual: any
 
    // Variable para almacenar el CAPTCHA generado
@@ -51,16 +49,28 @@ export class LoginComponent {
   fechaActual = new Date();
   mesActual = this.fechaActual.getMonth(); 
 
-
-
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
 
   constructor(private router: Router, private authService: AuthService, private db: DatabaseService,private usuarioService: UsuarioService) {
-    
+    this.traerAdministradores();
+    this.traerClientes();
   } 
+
+  traerAdministradores(){
+    this.db.traerUsuario('administradores').subscribe((response) => {
+      this.listaAdministradores = response;
+      console.log('Lista de Administradores:', this.listaAdministradores);
+    });
+  }
+  traerClientes(){
+    this.db.traerUsuario('clientes').subscribe((response) => {
+      this.listaClientes = response;
+      console.log('Lista de Clientes:', this.listaClientes);
+    });
+  }
 
   ngOnInit(): void {
     // Generar el CAPTCHA cuando se carga el componente        ->>> crear log basico
@@ -99,7 +109,7 @@ export class LoginComponent {
   }
 
 
-async handleLogin() {
+async handleLogin() {    //agregar wsp al registro
 
   // Validar CAPTCHA antes de proceder con el login
   // if (!this.validateCaptcha()) {
@@ -119,24 +129,20 @@ async handleLogin() {
     if (typeof email === 'string' && typeof password === 'string') {
       try {
         await this.authService.login(email, password);
-        
-    
-       
-        if(await this.emailVerified()){
-          this.registrarLogs();
 
-            await Swal.fire({
-              title: 'Éxito!',
-              text: 'Inicio de sesión exitoso!',
-              icon: 'success',
-            });
-            
-            this.router.navigate(['/bienvenida'],{ queryParams: { tipo: 'cliente' } });
-            // this.mostrarLogin = false; 
-            this.usuarioService.setUsuarioPerfil('clientes');   
+        const esAdmin = this.listaAdministradores.some((admin: any) => 
+          admin.email == email && admin.perfil == 'administrador'
+        );
 
-         
-          this.setterForms();
+        const esPaciente = this.listaClientes.some((admin: any) => 
+          admin.email == email && admin.perfil == 'cliente'
+        );
+
+       if (esAdmin) {
+        this.continuarLog('administradores');
+      }
+      else if(esPaciente && await this.emailVerified()) {
+          this.continuarLog('clientes');
         }
         
       } catch (error) {
@@ -172,7 +178,6 @@ async handleLogin() {
     this.form.get('password')?.setValue('');
   }
 
-  // Verificar si el correo está verificado
   async emailVerified():Promise<boolean>{
     const emailVerified = await this.authService.isEmailVerified();
     if (!emailVerified) {
@@ -225,7 +230,6 @@ registrarLogs() {
     };
 
     console.log(log);
-    
     this.db.agregarLog(log,'logs');
 
   } else {
@@ -261,6 +265,20 @@ registrarLogs() {
       return false;
     }
 
+  }
+
+  async continuarLog(perfil :string){
+    this.registrarLogs();
+
+          await Swal.fire({
+            title: 'Éxito!',
+            text: 'Inicio de sesión exitoso!',
+            icon: 'success',
+          });
+          
+          this.router.navigate(['/bienvenida']);
+          this.usuarioService.setUsuarioPerfil(perfil);
+          this.setterForms();
   }
 
 
