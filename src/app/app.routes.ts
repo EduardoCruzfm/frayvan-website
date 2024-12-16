@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'bienvenida', pathMatch: 'full' }, // Redirige la ruta raíz a "login"
@@ -26,5 +27,20 @@ export const routes: Routes = [
           (m) => m.RegistroComponent
         ),
         data: { animation: 'registro' },
+    },
+    {
+      path: 'usuario-detalle',
+      loadComponent: () =>
+        import('./components/usuario-detalle/usuario-detalle.component').then(
+          (m) => m.UsuarioDetalleComponent
+        ),
+        canActivate: [authGuard]
+    },
+    {
+      path: 'catalogo',
+      loadComponent: () =>
+        import('./components/catalogo/catalogo.component').then(
+          (m) => m.CatalogoComponent
+        )
     },
 ];

@@ -1,0 +1,28 @@
+<app-navbar id="nav"></app-navbar>
+<br>
+
+<div *ngIf="mostrarLogin" [@fadeAnimation] class="menu-container row g-0">
+  <div class="row">
+    <div class="col-md-3 col-sm-6 category-col">
+      <div class="category-card">
+        <button class="especialidad-boton" (click)="ir()">
+          <img src="image/mom.png" [alt]="" class="especialidad-imagen">
+        </button>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6 category-col">
+      <div class="category-card">
+        <button class="especialidad-boton" (click)="ir()">
+          <img src="image/short.png" [alt]="" class="especialidad-imagen">
+        </button>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-6 category-col">
+      <div class="category-card">
+        <button class="especialidad-boton" (click)="ir()">
+          <img src="image/tiroAlto.png" [alt]="" class="especialidad-imagen">
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

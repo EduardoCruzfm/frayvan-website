@@ -1,0 +1,62 @@
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px;
+    overflow: hidden; /* Evita scroll */
+    
+  }
+  
+  .row {
+    display: flex; /* Coloca los elementos en fila */
+    flex-wrap: wrap; /* Permite que se ajusten en pantallas más pequeñas */
+    justify-content: center; /* Centra horizontalmente */
+    gap: 10px; /* Espaciado entre columnas */
+    width: 100%;
+  }
+  
+  .category-col {
+    display: flex;
+    justify-content: center;
+    /* flex: 1 1 auto; Asegura flexibilidad */
+    /* margin-bottom: 20px; */
+  }
+  
+  .category-card {
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .especialidad-boton {
+    border: none;
+    background-color: transparent;
+    /* border-radius: 50%; */
+    padding: 0;
+    cursor: pointer;
+    width: 25vw; /* Botón adaptado al ancho de la ventana */
+    height: 85vh; /* Altura relativa a la ventana */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .especialidad-boton:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .especialidad-imagen {
+    width: 100%; /* Imagen llena el contenedor */
+    height: 100%;
+    object-fit: cover; /* Ajuste proporcional */
+    border-radius: 0%; /* Imagen rectangular */
+  }
+  

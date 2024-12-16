@@ -61,7 +61,7 @@ export class NavbarComponent {
   }
 
   catalogo() {
-    this.router.navigate(['/historia-clinica-filtro']);
+    this.router.navigate(['/catalogo']);
   }
 
   estadisticas() {
