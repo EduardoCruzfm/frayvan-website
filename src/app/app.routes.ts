@@ -63,6 +63,13 @@ export const routes: Routes = [
         import('./components/catalogo/chupin/chupin.component').then(
           (m) => m.ChupinComponent
         )
+    },
+    { 
+      path: 'detalle-producto/:id', 
+      loadComponent:()  =>        
+        import('./components/catalogo/detalle-producto/detalle-producto.component').then(
+          (m) => m.DetalleProductoComponent
+        )
     }
     
 ];
