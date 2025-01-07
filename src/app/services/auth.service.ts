@@ -9,8 +9,6 @@ import { DatabaseService } from './database.service';
   providedIn: 'root'
 })
 export class AuthService {
-   private usuario:any;
-
   private userLoggedInSubject = new BehaviorSubject<boolean>(false);
   private userEmailSubject = new BehaviorSubject<string | null>(null);
 
@@ -58,45 +56,6 @@ export class AuthService {
     return this.auth.currentUser; 
   }
   
-  // Método para verificar la aprobación del usuario por administrador
-  async verificarAprobacion(uid: string, tipoUsuario: 'especialistas' | 'pacientes'): Promise<boolean> {
-    try {
-      const usuario = await this.db.obtenerUsuarioPorId(uid, tipoUsuario);
-      console.log(usuario);
-      console.log(usuario.aprobado);
-
-      if (usuario && usuario.aprobado === true) {
-        return true;
-      }
-    } catch (error) {
-      console.error('Error verificando la aprobación:', error);
-    }
-
-    return false;
-  }
-
-  // Método para verificar la aprobación del usuario autenticado actual
-  async verificarAprobacionUsuarioActual(tipoUsuario: string): Promise<{ aprobado: boolean; tipo: 'especialistas' | 'pacientes' | null }> {
-    const currentUser = this.getCurrentUser();
-    if (currentUser) {
-
-      switch (tipoUsuario) {
-        case 'paciente':
-          const esPaciente = await this.verificarAprobacion(currentUser.uid, 'pacientes');
-          if (esPaciente) {
-            return { aprobado: true, tipo: 'pacientes' };
-          }
-          break;
-        case 'especialista':
-          const esEspecialista = await this.verificarAprobacion(currentUser.uid, 'especialistas');
-          if (esEspecialista) {
-            return { aprobado: true, tipo: 'especialistas' };
-          }
-          break;      
-      }
-    }
-    return { aprobado: false, tipo: null };
-  }
 
   // Envia verificacion al correo
   async sendVerificationEmail(user: User): Promise<void> {

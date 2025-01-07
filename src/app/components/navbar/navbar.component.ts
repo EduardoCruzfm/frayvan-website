@@ -19,13 +19,15 @@ export class NavbarComponent {
   userEmail: string | null = null; 
   usuarioActual: any | null = "";
 
-  constructor(private authService: AuthService, private router: Router, private db: DatabaseService,private usuarioService: UsuarioService) {
-    // Suscribirse a los cambios de estado de autenticación
-    this.authService.userLoggedIn$.subscribe((isLoggedIn) => {
+  constructor(private authService: AuthService,
+              private router: Router, 
+              private db: DatabaseService,
+              private usuarioService: UsuarioService
+            ){
+      this.authService.userLoggedIn$.subscribe((isLoggedIn) => {
       this.userLoggedIn = isLoggedIn;
     });
 
-    // Suscribirse a los cambios de correo del usuarioActual
     this.authService.userEmail$.subscribe(async (email) => {
       this.userEmail = email;
     });
@@ -42,7 +44,6 @@ export class NavbarComponent {
     // this.usuarioActual = this.usuarioService.getUsuario();
 
     console.log("tipoUsuarioPefil", this.tipoUsuarioPefil)
-    // console.log("usuarioActual ", this.usuarioActual)
   }
   
   async cargarUsuarioActual() {
@@ -64,8 +65,8 @@ export class NavbarComponent {
     this.router.navigate(['/catalogo']);
   }
 
-  estadisticas() {
-    this.router.navigate(['/estadisticas']);
+  altaProducto() {
+    this.router.navigate(['/alta-producto']);
   }
 
   miPerfil(usuario: any) {

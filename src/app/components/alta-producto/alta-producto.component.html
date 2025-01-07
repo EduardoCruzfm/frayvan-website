@@ -1,0 +1,86 @@
+<app-navbar id="nav"></app-navbar>
+
+<div *ngIf="true" [@fadeAnimation] class="container d-flex justify-content-center align-items-center min-vh-100">
+  <main class="form-signin w-100">
+    <form [formGroup]="form" class="p-4 border rounded shadow-sm bg-light">
+      <div class="text-center mb-4">
+        <!-- <img src="favicon.ico" alt="Logo" width="150" height="150" class="mb-3"> -->
+        <h1 class="h3 mb-3 fw-normal">Alta producto</h1>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" placeholder="Nombre" formControlName="nombre">
+        <label for="floatingInput">Nombre</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <select class="form-select" id="floatingSelect" formControlName="tipo">
+          <option value="" disabled selected>Selecciona un tipo</option>
+          <option value="mom">Mom</option>
+          <option value="short">Short</option>
+          <option value="chupin">Chupín</option>
+        </select>
+        <label for="floatingSelect">Tipo</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <select class="form-select" id="floatingSelectColor" formControlName="colores">
+          <option value="" disabled selected>Selecciona un color</option>
+          <option value="negro">Negro</option>
+          <option value="blanco">Blanco</option>
+          <option value="celeste">Celeste</option>
+          <option value="azul">Azul</option>
+          <option value="nevado">Nevado</option>
+        </select>
+        <label for="floatingSelectColor">Color</label>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Talles</label>
+        <div class="d-flex flex-wrap gap-3">
+          <div class="d-flex align-items-center border p-2 rounded" *ngFor="let talle of listaTalles">
+            <input type="checkbox" class="form-check-input me-2" [value]="talle" (change)="onTalleChange($event)" id="talle-{{ talle }}">
+            <label for="talle-{{ talle }}" class="form-check-label me-2">Talle {{ talle }}</label>
+            <input *ngIf="tallesSeleccionados.includes(talle)" type="number" class="form-control w-auto" placeholder="Cantidad" (input)="onCantidadChange(talle, $event)">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input type="file" class="form-control" id="fileInput" (change)="onFileSelected($event)" multiple>
+        <label for="fileInput">Foto</label>
+        <button type="button" class="btn btn-secondary mt-2 w-100" (click)="openModal()">Administrar imágenes</button>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade show d-block" tabindex="-1" role="dialog" *ngIf="isModalOpen">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Administrar imágenes</h5>
+              <button type="button" class="btn-close" (click)="closeModal()"></button>
+            </div>
+            <div class="modal-body">
+              <p>Total de imágenes: {{ previewImages.length }}</p>
+              <div class="image-container d-flex flex-wrap gap-3">
+                <div class="image-item text-center" *ngFor="let img of previewImages; let i = index">
+                  <img [src]="img.url" alt="Preview" class="img-thumbnail">
+                  <div class="mt-2">
+                    <button class="btn btn-sm btn-outline-secondary me-1" (click)="moveImage(i, -1)">⬅</button>
+                    <button class="btn btn-sm btn-outline-secondary me-1" (click)="moveImage(i, 1)">➡</button>
+                    <button class="btn btn-sm btn-outline-danger" (click)="removeImage(i)">❌</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="closeModal()">Ok</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-dark w-100 py-2" (click)="handleRegister()">Registrarse</button>
+    </form>
+  </main>
+</div>

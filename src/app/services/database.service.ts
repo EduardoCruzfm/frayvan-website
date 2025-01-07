@@ -23,23 +23,23 @@ export class DatabaseService {
     }
   }
 
-  async agregarTurno(turno: any, coleccion: string) {
+  async agregarProducto(producto: any, coleccion: string) {
     try {
-      // Generar un nuevo ID único para el turno usando createId()
-      const turnoId = this.firestore.createId();
+      // Generar un nuevo ID único para el producto usando createId()
+      const productoId = this.firestore.createId();
   
-      // Asignar el ID generado al turno
-      turno.id = turnoId;
+      // Asignar el ID generado al producto
+      producto.id = productoId;
   
       // Crear una referencia al documento usando el ID generado
-      const turnoDocRef = this.firestore.collection(coleccion).doc(turnoId);
+      const turnoDocRef = this.firestore.collection(coleccion).doc(productoId);
   
       // Guardar el documento en Firestore
-      await turnoDocRef.set({ ...turno });
+      await turnoDocRef.set({ ...producto });
   
-      console.log('Turno agregado exitosamente con ID:', turnoId);
+      console.log('Producto agregado exitosamente con ID:', productoId);
     } catch (error) {
-      console.error('Error al agregar el turno:', error);
+      console.error('Error al agregar el producto:', error);
     }
   }
 
@@ -60,9 +60,6 @@ export class DatabaseService {
     }
   }
   
-  
-
-
   traerUsuario(user: string){
     const collectionUsuarios = this.firestore.collection(user);
     const observable = collectionUsuarios.valueChanges();
@@ -104,19 +101,6 @@ export class DatabaseService {
       console.error('Error obteniendo el usuario:', error);
       return null;
     }
-  }
-
-  // Método para subir imagenes al Storage
-  async subirImagen(file: File): Promise<string> {
-    const storage = getStorage();
-    const storageRef = ref(storage, `imagenes/${file.name}`);
-
-    // Sube la imagen a Firebase Storage
-    await uploadBytes(storageRef, file);
-    
-    // Obtén la URL de descarga de la imagen subida
-    const url = await getDownloadURL(storageRef);
-    return url;
   }
   
 }

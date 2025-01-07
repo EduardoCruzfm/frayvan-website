@@ -70,6 +70,13 @@ export const routes: Routes = [
         import('./components/catalogo/detalle-producto/detalle-producto.component').then(
           (m) => m.DetalleProductoComponent
         )
+    },
+    { 
+      path: 'alta-producto', 
+      loadComponent:()  =>        
+        import('./components/alta-producto/alta-producto.component').then(
+          (m) => m.AltaProductoComponent
+        )
     }
     
 ];

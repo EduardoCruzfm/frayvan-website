@@ -59,4 +59,29 @@
     object-fit: cover; /* Ajuste proporcional */
     border-radius: 0%; /* Imagen rectangular */
   }
-  
+ 
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .text {
+    opacity: 0.8; /* Letras transparentes */
+}
+
+.col-md-3:hover .overlay {
+  opacity: 1; /* Mostrar al pasar el mouse */
+}
