@@ -60,13 +60,14 @@ export class LoginComponent {
   } 
 
   traerAdministradores(){
-    this.db.traerUsuario('administradores').subscribe((response) => {
+    this.db.traerColeccion('administradores').subscribe((response) => {
       this.listaAdministradores = response;
       console.log('Lista de Administradores:', this.listaAdministradores);
     });
   }
+
   traerClientes(){
-    this.db.traerUsuario('clientes').subscribe((response) => {
+    this.db.traerColeccion('clientes').subscribe((response) => {
       this.listaClientes = response;
       console.log('Lista de Clientes:', this.listaClientes);
     });

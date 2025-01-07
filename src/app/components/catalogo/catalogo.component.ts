@@ -24,7 +24,6 @@ import { Router } from '@angular/router';
   ]
 })
 export class CatalogoComponent {
-  mostrarLogin: boolean = true; 
 
   constructor(private router: Router) { }
 
@@ -36,6 +35,7 @@ export class CatalogoComponent {
   irAMom() {
     this.router.navigate(['/mom']);
   }
+  
   irAChupin() {
     this.router.navigate(['/chupin']);
   }

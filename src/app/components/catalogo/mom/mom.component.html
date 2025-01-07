@@ -1,1 +1,26 @@
-<p>mom works!</p>
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-3">
+        <app-talles />
+    </div>
+
+    <div class="col-9">        
+        <div class="row text-center my-3">
+          <div *ngFor="let mom of momList"  class="col item-card">
+            <button class="item-boton rounded" (click)="verDetalleProducto(1)">
+              <img
+                [src]="mom.fotos[2]"
+                [alt]=""
+                class="especialidad-imagen rounded"
+              />
+              <p class="item-titulo">{{mom.nombre}}</p>
+            </button>
+          </div>
+        </div>
+    
+  </div>
+
+</div>

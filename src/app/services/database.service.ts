@@ -60,9 +60,9 @@ export class DatabaseService {
     }
   }
   
-  traerUsuario(user: string){
-    const collectionUsuarios = this.firestore.collection(user);
-    const observable = collectionUsuarios.valueChanges();
+  traerColeccion(nombreColeccion: string){
+    const collection = this.firestore.collection(nombreColeccion);
+    const observable = collection.valueChanges();
     return observable;
   }
 

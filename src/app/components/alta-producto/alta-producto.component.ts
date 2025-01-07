@@ -56,11 +56,8 @@ export class AltaProductoComponent {
           try {
 
             await this.uploadAllImages();
-
             const producto: Producto = new Producto('',nombre,tipo,talles,colores,this.coleccionFile)
-
-            this.db.agregarProducto(producto,'productos');
-            
+            this.db.agregarProducto(producto,tipo);
             
             console.log('prod -------->',producto);
               
