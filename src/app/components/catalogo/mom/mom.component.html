@@ -10,7 +10,7 @@
     <div class="col-9">        
         <div class="row text-center my-3">
           <div *ngFor="let mom of momList"  class="col item-card">
-            <button class="item-boton rounded" (click)="verDetalleProducto(1)">
+            <button class="item-boton rounded" (click)="verDetalleProducto(mom.id)">
               <img
                 [src]="mom.fotos[2]"
                 [alt]=""

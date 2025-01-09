@@ -3,6 +3,7 @@ import { DatabaseService } from '../../../services/database.service';
 import { NavbarComponent } from '../../navbar/navbar.component';
 import { TallesComponent } from '../talles/talles.component';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { CommonModule } from '@angular/common';
 export class MomComponent {
   momList: any;
 
-  constructor(private db: DatabaseService){
+  constructor(private db: DatabaseService,private router: Router){
     this.traerProductos();
   }
 
@@ -26,7 +27,10 @@ export class MomComponent {
     });
   }
 
-  verDetalleProducto(id :any) {}
+  verDetalleProducto(id :string) {
+    const coleccion = 'moms';
+    this.router.navigate(['/detalle-producto', id, coleccion]);
+  }
 
 
 }

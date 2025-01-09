@@ -65,7 +65,7 @@ export const routes: Routes = [
         )
     },
     { 
-      path: 'detalle-producto/:id', 
+      path: 'detalle-producto/:id/:coleccion', 
       loadComponent:()  =>        
         import('./components/catalogo/detalle-producto/detalle-producto.component').then(
           (m) => m.DetalleProductoComponent

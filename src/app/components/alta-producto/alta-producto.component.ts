@@ -31,7 +31,7 @@ export class AltaProductoComponent {
   tallesSeleccionados: number[] = []; // Para almacenar los talles seleccionados
   selectedFile: any;
   coleccionFile: string[] = [];
-  tallesConCantidad: { talle: number; cantidad: number }[] = []; // Resultado final
+  tallesConCantidad: { numeroTalle: number; cantidad: number }[] = []; // Resultado final
 
   selectedFiles: File[] = [];
   previewImages: { url: string; file: File }[] = [];
@@ -40,7 +40,7 @@ export class AltaProductoComponent {
    form = new FormGroup({
        nombre: new FormControl('', [Validators.required]),
        tipo: new FormControl('', [Validators.required]),
-       talles: new FormControl([{ talle: 0, cantidad: 0 }], [Validators.required]),
+       talles: new FormControl([{ numeroTalle: 0, cantidad: 0 }], [Validators.required]),
        colores: new FormControl('', [Validators.required]),
       
      });
@@ -106,21 +106,21 @@ export class AltaProductoComponent {
       );
       // Eliminar la cantidad asociada
       this.tallesConCantidad = this.tallesConCantidad.filter(
-        (tc) => tc.talle !== +talle
+        (tc) => tc.numeroTalle !== +talle
       );
     }
   }
   
   onCantidadChange(talle: number, event: any) {
     const cantidad = +event.target.value;
-    const index = this.tallesConCantidad.findIndex((tc) => tc.talle === talle);
+    const index = this.tallesConCantidad.findIndex((tc) => tc.numeroTalle === talle);
 
     if (index !== -1) {
       // Actualizar cantidad existente
       this.tallesConCantidad[index].cantidad = cantidad;
     } else {
       // Agregar un nuevo objeto de talle y cantidad
-      this.tallesConCantidad.push({ talle: talle, cantidad });
+      this.tallesConCantidad.push({ numeroTalle: talle, cantidad });
     }
   }
 

@@ -1,21 +1,26 @@
 <app-navbar></app-navbar>
+
 <div class="container">
     <h2 class="mx-4">Detalle del producto {{productoId}}</h2>
 
     <div class="row">
   
         <div class="d-none d-lg-flex col-lg-2 d-flex flex-column gap-2 py-2">
-            <img src="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg">
-            <img src="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg">
-            <img src="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg">
+            <img 
+            *ngFor="let foto of producto?.fotos" 
+            [src]="foto" 
+            alt="Foto del producto" 
+            (click)="cambiarImagen(foto)" 
+            class="img-thumbnail" 
+            style="cursor: pointer;"
+            >
+            <!-- <img src="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg"> -->
         </div>
       
         <div class="col-sm-12 col-lg-7 text-center">        
             <button class="item-boton">
-                <img src="image/catalogo-short/short-1.jpg"
-                class="especialidad-imagen rounded"
-                >
-            </button>
+                <img *ngIf="producto?.fotos" [src]="imagenSeleccionada" class="especialidad-imagen rounded">
+              </button>   
         </div>
 
         <div class="col-12 col-lg-3 p-5 item-opciones">
@@ -30,14 +35,9 @@
             
             <p>Talles:</p>
             <div class="d-flex gap-2" id="size-buttons">
-              <button class="btn btn-outline-primary">S</button>
-              <button class="btn btn-outline-primary">M</button>
-              <button class="btn btn-outline-primary">L</button>
-              <button class="btn btn-outline-primary">XL</button>
+              <button *ngFor="let talle of producto?.talles" class="btn btn-outline-primary">{{talle.numeroTalle}}</button>
             </div>
-        </div>
-          
-          
+        </div>      
           
     </div>
 
