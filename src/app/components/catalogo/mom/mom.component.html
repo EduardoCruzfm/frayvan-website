@@ -3,13 +3,13 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-3">
+    <div class="col-2">
         <app-talles />
     </div>
 
-    <div class="col-9">        
-        <div class="row text-center my-3">
-          <div *ngFor="let mom of productMomList"  class="col item-card">
+    <div class="col-10">        
+        <div class="row text-center my-3 justify-content-evenly">
+          <div *ngFor="let mom of productMomList"  class="item-card" style="width: 260px;">
             <button class="item-boton rounded" (click)="verDetalleProducto(mom.id)">
               <img
                 [src]="mom.fotos[2]"
