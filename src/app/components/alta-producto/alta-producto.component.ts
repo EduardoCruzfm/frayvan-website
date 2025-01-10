@@ -38,10 +38,11 @@ export class AltaProductoComponent {
   isModalOpen = false;
 
    form = new FormGroup({
-       nombre: new FormControl('', [Validators.required]),
+       titulo: new FormControl('', [Validators.required]),
        tipo: new FormControl('', [Validators.required]),
        talles: new FormControl([{ numeroTalle: 0, cantidad: 0 }], [Validators.required]),
        colores: new FormControl('', [Validators.required]),
+       descripcion: new FormControl('', [Validators.required]),
       
      });
    
@@ -49,14 +50,14 @@ export class AltaProductoComponent {
    
      // Registrar producto
   async handleRegister() {
-        const { nombre,tipo,talles,colores } = this.form.value;
+        const { titulo,tipo,talles,colores,descripcion } = this.form.value;
         
-        if (typeof nombre === 'string' && typeof tipo === 'string' && 
-            Array.isArray(talles) &&  typeof colores === 'string') {
+        if (typeof titulo === 'string' && typeof tipo === 'string' && 
+            Array.isArray(talles) &&  typeof colores === 'string' && typeof descripcion === 'string') {
           try {
 
             await this.uploadAllImages();
-            const producto: Producto = new Producto('',nombre,tipo,talles,colores,this.coleccionFile)
+            const producto: Producto = new Producto('',titulo,tipo,talles,colores,this.coleccionFile,descripcion)
             this.db.agregarProducto(producto,tipo);
             
             console.log('prod -------->',producto);

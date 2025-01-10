@@ -9,14 +9,14 @@
 
     <div class="col-9">        
         <div class="row text-center my-3">
-          <div *ngFor="let mom of momList"  class="col item-card">
+          <div *ngFor="let mom of productMomList"  class="col item-card">
             <button class="item-boton rounded" (click)="verDetalleProducto(mom.id)">
               <img
                 [src]="mom.fotos[2]"
                 [alt]=""
                 class="especialidad-imagen rounded"
               />
-              <p class="item-titulo">{{mom.nombre}}</p>
+              <p class="item-titulo">{{mom.titulo}}</p>
             </button>
           </div>
         </div>

@@ -1,1 +1,26 @@
-<p>chupin works!</p>
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-3">
+        <app-talles />
+    </div>
+
+    <div class="col-9">        
+        <div class="row text-center my-3">
+          <div *ngFor="let chupin of productChupinList"  class="col item-card">
+            <button class="item-boton rounded" (click)="verDetalleProducto(chupin.id)">
+              <img
+                [src]="chupin.fotos[2]"
+                [alt]=""
+                class="especialidad-imagen rounded"
+              />
+              <p class="item-titulo">{{chupin.titulo}}</p>
+            </button>
+          </div>
+        </div>
+    
+  </div>
+
+</div>

@@ -46,8 +46,7 @@ export class DetalleProductoComponent {
   cambiarImagen(foto: string) {
     this.imagenSeleccionada = foto;
   }
-
-
+  
   setupButtonGroup(buttonGroupId: string, activeClass: string): void {
     const buttonGroup = document.getElementById(buttonGroupId);
   

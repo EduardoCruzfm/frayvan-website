@@ -6,8 +6,22 @@
     <div class="col-3">
         <app-talles />
     </div>
-
     <div class="col-9">        
+      <div class="row text-center my-3">
+        <div *ngFor="let short of productShortList"  class="col item-card">
+          <button class="item-boton rounded" (click)="verDetalleProducto(short.id)">
+            <img
+              [src]="short.fotos[0]"
+              [alt]=""
+              class="especialidad-imagen rounded"
+            />
+            <p class="item-titulo">{{short.titulo}}</p>
+          </button>
+        </div>
+      </div>
+  
+</div>
+    <!-- <div class="col-9">        
         <div class="row text-center my-3">
           <div class="col item-card">
             <button class="item-boton rounded" (click)="verDetalleProducto(1)">
@@ -73,7 +87,7 @@
             </button>
           </div>
         </div>
-    </div>
+    </div> -->
     
   </div>
 

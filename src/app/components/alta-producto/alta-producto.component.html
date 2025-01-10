@@ -9,8 +9,8 @@
       </div>
 
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" placeholder="Nombre" formControlName="nombre">
-        <label for="floatingInput">Nombre</label>
+        <input type="text" class="form-control" id="floatingInput" placeholder="Titulo" formControlName="titulo">
+        <label for="floatingInput">Titulo</label>
       </div>
 
       <div class="form-floating mb-3">
@@ -50,6 +50,11 @@
         <input type="file" class="form-control" id="fileInput" (change)="onFileSelected($event)" multiple>
         <label for="fileInput">Foto</label>
         <button type="button" class="btn btn-secondary mt-2 w-100" (click)="openModal()">Administrar imágenes</button>
+      </div>
+
+      <div class="form-floating mb-3">
+        <textarea type="text" class="form-control" id="floatingInput" placeholder="Descripcion" formControlName="descripcion" style="height: 80px;"></textarea>
+        <label for="floatingInput">Descripcion</label>
       </div>
 
       <!-- Modal -->

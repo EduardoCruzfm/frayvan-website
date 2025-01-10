@@ -14,22 +14,22 @@ import { Router } from '@angular/router';
   styleUrl: './mom.component.css'
 })
 export class MomComponent {
-  momList: any;
+  model :string = 'moms';
+  productMomList: any;
 
   constructor(private db: DatabaseService,private router: Router){
     this.traerProductos();
   }
 
   traerProductos(){
-    this.db.traerColeccion('moms').subscribe((response) => {
-      this.momList = response;
-      console.log('momList---> ',this.momList);
+    this.db.traerColeccion(this.model).subscribe((response) => {
+      this.productMomList = response;
+      console.log('productMomList---> ',this.productMomList);
     });
   }
 
   verDetalleProducto(id :string) {
-    const coleccion = 'moms';
-    this.router.navigate(['/detalle-producto', id, coleccion]);
+    this.router.navigate(['/detalle-producto', id, this.model]);
   }
 
 
