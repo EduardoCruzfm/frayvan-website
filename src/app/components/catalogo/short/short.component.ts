@@ -15,7 +15,6 @@ import { CommonModule } from '@angular/common';
 export class ShortComponent {
   model :string = 'shorts';
   productShortList: any;
-  // imgInitial: string = 
 
   constructor(private db: DatabaseService,private router: Router) {
     this.traerProductos();

@@ -3,12 +3,12 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-3">
+    <div class="col-2">
         <app-talles />
     </div>
-    <div class="col-9">        
-      <div class="row text-center my-3">
-        <div *ngFor="let short of productShortList"  class="col item-card">
+    <div class="col-10">        
+      <div class="row text-center my-3 justify-content-evenly">
+        <div *ngFor="let short of productShortList"   class="item-card" style="width: 260px;">
           <button class="item-boton rounded" (click)="verDetalleProducto(short.id)">
             <img
               [src]="short.fotos[0]"
@@ -20,75 +20,7 @@
         </div>
       </div>
   
-</div>
-    <!-- <div class="col-9">        
-        <div class="row text-center my-3">
-          <div class="col item-card">
-            <button class="item-boton rounded" (click)="verDetalleProducto(1)">
-              <img
-                src="image/catalogo-short/short-1.jpg"
-                [alt]=""
-                class="especialidad-imagen rounded"
-              />
-              <p class="item-titulo">Short Negro</p>
-            </button>
-          </div>
-          <div class="col item-card">
-            <button class="item-boton rounded" (click)="verDetalleProducto(2)">
-              <img
-                src="image/catalogo-short/short-2.jpg"
-                [alt]=""
-                class="especialidad-imagen rounded"
-              />
-              <p class="item-titulo">Short Gris</p>
-            </button>
-          </div>
-          <div class="col item-card">
-            <button class="item-boton rounded" (click)="verDetalleProducto(3)">
-              <img
-                src="image/catalogo-short/short-3.jpg"
-                [alt]=""
-                class="especialidad-imagen rounded"
-              />
-              <p class="item-titulo">Short Azul</p>
-            </button>
-          </div>
-        </div>
-
-        <div class="row text-center my-3">
-          <div class="col item-card">
-            <button class="item-boton rounded" (click)="verDetalleProducto(1)">
-              <img
-                src="image/catalogo-short/short-1.jpg"
-                [alt]=""
-                class="especialidad-imagen rounded"
-              />
-              <p class="item-titulo">Short Negro</p>
-            </button>
-          </div>
-          <div class="col item-card">
-            <button class="item-boton rounded" (click)="verDetalleProducto(2)">
-              <img
-                src="image/catalogo-short/short-2.jpg"
-                [alt]=""
-                class="especialidad-imagen rounded"
-              />
-              <p class="item-titulo">Short Gris</p>
-            </button>
-          </div>
-          <div class="col item-card">
-            <button class="item-boton rounded" (click)="verDetalleProducto(3)">
-              <img
-                src="image/catalogo-short/short-3.jpg"
-                [alt]=""
-                class="especialidad-imagen rounded"
-              />
-              <p class="item-titulo">Short Azul</p>
-            </button>
-          </div>
-        </div>
-    </div> -->
-    
+    </div>
   </div>
 
 </div>
