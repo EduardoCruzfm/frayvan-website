@@ -42,7 +42,7 @@
     .category-card {
       height: 33vh;
     }      
-
+  }
     @media (max-width: 768px) {
       .overlay {
         position: absolute;
@@ -130,4 +130,4 @@
   opacity: 1; /* Mostrar al pasar el mouse */
 }
 
-}
+/* } */
