@@ -1,41 +1,16 @@
 <h3>Talles:</h3>
 
-<div class="form-check">
-    <input role="button" class="form-check-input" type="checkbox" value="S" id="flexCheckDefault">
-    <label class="form-check-label" for="flexCheckDefault">
-        34
-    </label>
-</div>
-
-<div class="form-check">
-    <input role="button" class="form-check-input" type="checkbox" value="M" id="flexCheckDefault">
-    <label class="form-check-label" for="flexCheckDefault">
-        36
-    </label>
-</div>
-
-<div class="form-check">
-    <input role="button" class="form-check-input" type="checkbox" value="L" id="flexCheckDefault">
-    <label class="form-check-label" for="flexCheckDefault">
-        38
-    </label>
-</div>
-
-<div class="form-check">
-    <input role="button" class="form-check-input" type="checkbox" value="XL" id="flexCheckDefault">
-    <label class="form-check-label" for="flexCheckDefault">
-        40
-    </label>
-</div>
-<div class="form-check">
-    <input role="button" class="form-check-input" type="checkbox" value="XL" id="flexCheckDefault">
-    <label class="form-check-label" for="flexCheckDefault">
-        42
-    </label>
-</div>
-<div class="form-check">
-    <input role="button" class="form-check-input" type="checkbox" value="XL" id="flexCheckDefault">
-    <label class="form-check-label" for="flexCheckDefault">
-        44
+<div *ngFor="let talle of listaTalles"   class="form-check">
+    <input 
+        role="button" 
+        class="form-check-input" 
+        type="checkbox" 
+        [value]= talle 
+        [id]="'flexCheckDefault' + talle"
+        [checked]="seleccionados[talle] || false"
+        (change)="checkTalle($event, talle)"
+    >
+    <label class="form-check-label" [for]="'flexCheckDefault' + talle">
+        {{talle}}
     </label>
 </div>
