@@ -49,47 +49,59 @@ export class AltaProductoComponent {
      constructor( private storage :StorageService ,private db:DatabaseService ) {} 
    
      // Registrar producto
-  async handleRegister() {
-        const { titulo,tipo,talles,colores,descripcion } = this.form.value;
-        
-        if (typeof titulo === 'string' && typeof tipo === 'string' && 
-            Array.isArray(talles) &&  typeof colores === 'string' && typeof descripcion === 'string') {
-          try {
-
-            await this.uploadAllImages();
-            const producto: Producto = new Producto('',titulo,tipo,talles,colores,this.coleccionFile,descripcion)
-            this.db.agregarProducto(producto,tipo);
-            
-            console.log('prod -------->',producto);
-              
-              // Mostrar mensaje de éxito en el registro
-              await Swal.fire({
-                title: 'Producto registrado con éxito!',
-                text: 'El producto ha sido agregado correctamente a la base de datos.',
-                icon: 'success',
-                confirmButtonText: 'Aceptar',
-              });
+  async handleRegister() {  
+    const errores = this.validarFormulario(this.form.value);
     
-          } catch (error: any) {
-            
-              await Swal.fire({
-                icon: 'error',
-                title: 'Error al registrar el producto',
-                text: 'Ha ocurrido un error al registrar el producto. Por favor, intenta de nuevo más tarde.',
-                footer: '<a href="#">¿Por qué tengo este problema?</a>',
-                confirmButtonText: 'Aceptar',
-              });
-            
-          }
-        } else {
+    if (errores) {
+        await Swal.fire({ icon: 'error', title: 'Datos inválidos', text: errores, confirmButtonText: 'Aceptar', });
+        return;
+    }
+    
+    if (this.coleccionFile.length === 0) {
+      await Swal.fire({icon: 'error',title: 'Faltan imágenes',
+          text: 'Debes subir al menos una imagen para registrar el producto.',
+          confirmButtonText: 'Aceptar',
+      });
+      return;
+    }
+
+    const { titulo, tipo, talles, colores, descripcion } = this.form.value;
+    
+    if (typeof titulo === 'string' && typeof tipo === 'string' &&  Array.isArray(talles) 
+        &&  typeof colores === 'string' && typeof descripcion === 'string') {
+    
+        try {  
+          await this.uploadAllImages();
+          const producto: Producto = new Producto('',titulo,tipo,talles,colores,this.coleccionFile,descripcion)
+          this.db.agregarProducto(producto,tipo);
+          console.log('prod -------->',producto);
+  
+          // Mostrar mensaje de éxito en el registro
+          await Swal.fire({
+            title: 'Producto registrado con éxito!',
+            text: 'El producto ha sido agregado correctamente a la base de datos.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+          });        
+        }
+        catch (error: any) {      
           await Swal.fire({
             icon: 'error',
-            title: 'Datos inválidos',
-            text: 'Por favor, asegúrate de que todos los campos estén correctamente llenados (nombre, tipo, talles y colores).',
+            title: 'Error al registrar el producto',
+            text: 'Ha ocurrido un error al registrar el producto. Por favor, intenta de nuevo más tarde.',
+            footer: '<a href="#">¿Por qué tengo este problema?</a>',
             confirmButtonText: 'Aceptar',
           });
-        }
-      
+      }
+    } else{
+      await Swal.fire({
+        icon: 'error',
+        title: 'Datos inválidos',
+        text: 'Por favor, asegúrate de poner caracteres validos',
+        confirmButtonText: 'Aceptar',
+      });
+    }
+ 
   }
 
   onTalleChange(event: any) {
@@ -124,7 +136,6 @@ export class AltaProductoComponent {
       this.tallesConCantidad.push({ numeroTalle: talle, cantidad });
     }
   }
-
 
     // Manejar la selección de archivos
   onFileSelected(event: Event): void {  
@@ -188,4 +199,15 @@ export class AltaProductoComponent {
       console.error('Error al subir las imágenes:', error);
     }
   }
+
+  private validarFormulario({ titulo, tipo, talles, colores, descripcion }: any): string | null {
+    if (!titulo.trim()) return "El título es obligatorio.";
+    if (!tipo.trim()) return "El tipo es obligatorio.";
+    if (!Array.isArray(talles) || talles.length === 0) return "Debes seleccionar al menos un talle.";
+    if (!colores.trim()) return "El campo colores es obligatorio.";
+    if (!descripcion.trim()) return "La descripción es obligatoria.";
+
+    return null; // Indica que no hay errores
+}
+
 }
