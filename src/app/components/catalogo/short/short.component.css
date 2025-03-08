@@ -19,8 +19,7 @@
 }
 
 .item-titulo {
-    /* margin: 16px 0;
-    font-weight: 700; */
+    margin: 16px 0;
     color: black !important;
     font-weight: 700;
     font-size: 1.1rem;

@@ -20,7 +20,11 @@
 
 .item-titulo {
     margin: 16px 0;
+    color: black !important;
     font-weight: 700;
+    font-size: 1.1rem;
+    -webkit-margin-after: 12px; /* Safari */
+    margin-bottom: 12px;
 }
 
 .especialidad-imagen:hover {
