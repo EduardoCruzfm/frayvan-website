@@ -4,6 +4,10 @@
     overflow: hidden;
 }
 
+.item-card {
+    max-width: 260px;
+}
+
 .item-boton {
     height: 400px;
     border-style: none;

@@ -1,17 +1,18 @@
 <app-navbar></app-navbar>
 
-<div class="container">
+<div class="container px-3">
   <div class="row">
 
     <div class="col-2">
-        <app-talles (talleSeleccionado)="recibirTalle($event)" [limpiarTalles]="limpiarTallesEvent"></app-talles>
-        <br>
-        <button class="btn btn-dark me-2"
-        (click)="limpiarFiltros()">Limpiar Filtros</button>
+      <app-talles (talleSeleccionado)="recibirTalle($event)" [limpiarTalles]="limpiarTallesEvent"></app-talles>
+      <br>
+      <button class="btn btn-dark me-2 btn-sm"
+      (click)="limpiarFiltros()">Limpiar Filtros</button>
     </div>
+
     <div class="col-10">        
       <div class="row text-center my-3 justify-content-evenly">
-        <div *ngFor="let short of productShortList"   class="item-card" style="width: 260px;">
+        <div *ngFor="let short of productShortList" class="item-card mb-3">
           <button class="item-boton rounded" (click)="verDetalleProducto(short.id)">
             <img
               [src]="short.fotos[0]"
@@ -21,8 +22,7 @@
             <p class="item-titulo">{{short.titulo}}</p>
           </button>
         </div>
-      </div>
-  
+      </div>      
     </div>
   </div>
 
